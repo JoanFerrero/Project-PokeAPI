@@ -1,6 +1,8 @@
+import PokeDetail from "../components/Poke/Details"
+
 const PokeDetails = () => {
   return (
-    <h1>Details xD</h1>
+    <PokeDetail />
   )
 }
 

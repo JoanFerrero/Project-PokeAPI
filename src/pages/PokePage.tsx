@@ -17,7 +17,7 @@ const PokePage = () => {
     setOffset(page + next)
   }
 
-  const detail:boolean = true
+  const detail:boolean = false
 
   return (
     <>
