@@ -19,3 +19,14 @@ export interface PokeContextType {
   loading: boolean
   setLoading: (value: boolean) => void
 }
+
+export interface DataList {
+  name: String
+  url: String
+  details: Boolean
+}
+
+export interface DataPage {
+  name: String
+  url: String
+}

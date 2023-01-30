@@ -1,12 +1,13 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState, useContext } from "react"
 import PokeList from "../components/Poke/PokeList"
 import { PokemonContext } from '../Context/PokemonContext';
-import {PokeContextType, Data} from '../types/pokemon';
+import {PokeContextType, DataPage} from '../types/pokemon';
 
 const PokePage = () => {
 
   const [page, setPage] = useState(1)
-  const { count, setOffset } = useContext(PokemonContext) as PokeContextType;
+  const { count, setOffset, pokemons } = useContext(PokemonContext) as PokeContextType;
 
   const onChangePage = (next: number) => {
     if(page + next <= 0) return;
@@ -16,12 +17,22 @@ const PokePage = () => {
     setOffset(page + next)
   }
 
+  const detail:boolean = true
+
   return (
     <>
       <div className={`bg-light dark:bg-black`}>
         <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-            <PokeList />
+          {pokemons.map(
+          ({
+            name,
+            url,
+          }: DataPage) => (
+            <>
+              <PokeList name={name} url={url} details={detail}/>
+            </>
+          ))}
           </div>
         </div>
         <div className="grid justify-items-center">
