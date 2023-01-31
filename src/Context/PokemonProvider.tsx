@@ -1,7 +1,7 @@
 import { useEffect, useState, ReactNode } from "react";
 import { PokemonContext } from "./PokemonContext";
 import PokemonService from '../services/Pokemon/PokemonService'
-import { Data, PokeOne, DataPage } from '../types/pokemon'
+import { Data, PokeOne, Pokemons } from '../types/pokemon'
 
 interface Props {
   children: ReactNode
@@ -10,10 +10,9 @@ interface Props {
 export const PokemonProvider = ({ children }: Props) => {
   const [pokemons, setPokemons] = useState<Array<Data>>([])
   const [pokemon, setPokemon] = useState<Array<PokeOne>>([])
-  const [ability, setAbility] = useState<Array<DataPage>>([])
+  const [ability, setAbility] = useState<Array<Pokemons>>([])
   const [count, setCount] = useState<Data[]>([])
   const [offset, setOffset] = useState(0);
-  const [loading, setLoading] = useState(true);
 
   const getAllPokemons = (limit = 9) => {
     PokemonService.getAll(limit, offset * 9)
@@ -37,7 +36,7 @@ export const PokemonProvider = ({ children }: Props) => {
   }, [offset])
   
   return (
-    <PokemonContext.Provider value={{pokemons, offset, setOffset, loading, getAllPokemons, getOnePokemon, count, pokemon, ability}}>
+    <PokemonContext.Provider value={{pokemons, offset, setOffset, getAllPokemons, getOnePokemon, count, pokemon, ability}}>
       {children}
     </PokemonContext.Provider>
   )

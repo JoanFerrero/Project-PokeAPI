@@ -14,6 +14,7 @@ const initialState: PokeState = {
 
 export interface likes {
   id: String
+  name: String
 }
 
 const pokeSlice = createSlice({

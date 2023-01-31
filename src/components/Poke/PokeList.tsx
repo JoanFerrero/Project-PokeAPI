@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 const PokeList = ({name, url, details, likes}: DataList) => {
 
   const [heart, setHeart] = useState('FcLikePlaceholder')
+  
   const id = url.split('/').slice(-2)[0]
 
   const navigate = useNavigate()
@@ -23,7 +24,7 @@ const PokeList = ({name, url, details, likes}: DataList) => {
 
   const addLike = (id: string) => {
     if(likes !== undefined) {
-      likes = [...likes, {id}]
+      likes = [...likes, {id, name}]
       dispatch(setLike({ likes }))
     }
   }

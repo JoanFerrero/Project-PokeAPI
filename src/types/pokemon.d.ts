@@ -31,7 +31,7 @@ export interface Pokemons {
 export interface PokeContextType {
   count: number
   pokemons: Array<Pokemons>
-  pokemon: Array<DataPage>
+  pokemon: Array<Pokemons>
   ability: Array<PokeOne>
   getAllPokemons: (value: Array<Data>) => void
   offset: number
@@ -49,21 +49,22 @@ export interface DataList {
 }
 export interface likes {
   id: String
+  name: String
 }
 
 export interface DataTablePokemons {
   pokemon: Array<Pokemons>
 }
 
-export interface DataPage {
+export interface DataLikePage {
+  id: String
   name: String
-  url: String
 }
 
 // Interface One Pokemon //
 
 export interface PokeOne {
-  ability: DataPage;
+  ability: Pokemons;
   is_hidden: boolean;
   slot:      number;
 }

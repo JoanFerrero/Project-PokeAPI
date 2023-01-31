@@ -11,6 +11,7 @@ function App() {
 
   const PokeList = React.lazy(() => import('./pages/PokePage'))
   const PokeDetails = React.lazy(() => import('./pages/PokeDetails'))
+  const PokeLikes = React.lazy(() => import('./pages/PokeLikes'))
 
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
               <Routes>
                 <Route path='/' element={<PokeList />} />
                 <Route path='/detail' element={<PokeDetails />} />
+                <Route path='/likes' element={<PokeLikes />} />
               </Routes>
               </BrowserRouter>
             </div>

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { useCustomSelector } from '../../hooks/redux';
-import { DataTablePokemons, DataPage } from "../../types/pokemon"
+import { DataTablePokemons, Pokemons } from "../../types/pokemon"
 
 const TablePoke = (pokemon : DataTablePokemons) => {
 
@@ -31,7 +31,7 @@ const TablePoke = (pokemon : DataTablePokemons) => {
                 ({
                   name,
                   url
-                }: DataPage) => (
+                }: Pokemons) => (
                   <tr>
                     <td className={`px-6 py-4 text-sm font-medium whitespace-nowrap ${mode === 'dark' ? 'text-white': 'text-gray-800'}`}>
                       {url.split('/').slice(-2)[0]}

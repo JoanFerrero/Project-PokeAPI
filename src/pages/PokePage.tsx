@@ -4,7 +4,7 @@ import PokeList from "../components/Poke/PokeList"
 import TablePoke from "../components/Poke/TablePoke";
 import { PokemonContext } from '../Context/PokemonContext';
 import { useCustomSelector } from "../hooks/redux";
-import {PokeContextType, DataPage} from '../types/pokemon';
+import {PokeContextType, Pokemons} from '../types/pokemon';
 
 const PokePage = () => {
 
@@ -38,9 +38,9 @@ const PokePage = () => {
             ({
               name,
               url,
-            }: DataPage) => (
+            }: Pokemons) => (
               <>
-                <PokeList name={name} url={url} details={detail} likes={likes}/>
+                <PokeList name={name} url={url.split('/').slice(-2)[0]} details={detail} likes={likes}/>
               </>
             ))}
           </div>
