@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState, useContext } from "react"
 import PokeList from "../components/Poke/PokeList"
+import TablePoke from "../components/Poke/TablePoke";
 import { PokemonContext } from '../Context/PokemonContext';
 import { useCustomSelector } from "../hooks/redux";
 import {PokeContextType, DataPage} from '../types/pokemon';
@@ -8,6 +9,7 @@ import {PokeContextType, DataPage} from '../types/pokemon';
 const PokePage = () => {
 
   const [page, setPage] = useState(1)
+  const [option, setOption] = useState('Grid') // List
   const { count, setOffset, pokemons } = useContext(PokemonContext) as PokeContextType;
 
   const onChangePage = (next: number) => {
@@ -25,7 +27,9 @@ const PokePage = () => {
 
   return (
     <>
-      <div className={`bg-light dark:bg-black`}>
+    <div className={`bg-light dark:bg-black`}>
+    <button onClick={() => {option === 'Grid' ? setOption('List') : setOption('Grid')}} className="mt-6 ml-6 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Change Mode</button>
+      {option === "Grid" ? (
         <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
             {pokemons.map(
@@ -39,6 +43,11 @@ const PokePage = () => {
             ))}
           </div>
         </div>
+      ):(
+        <>
+          <TablePoke pokemon={pokemons}/>
+        </>
+      )}
         <div className="grid justify-items-center">
           <ul className="inline-flex items-center -space-x-px">
             <li>

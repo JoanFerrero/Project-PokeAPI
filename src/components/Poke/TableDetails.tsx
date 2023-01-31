@@ -6,7 +6,6 @@ const Table = () => {
 
   const { ability } = useContext(PokemonContext) as PokeContextType;
   let num = 0
-  console.log(ability)
 
   return (
     <div className="flex flex-col">

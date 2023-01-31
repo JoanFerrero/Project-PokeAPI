@@ -48,6 +48,10 @@ export interface DataList {
   likes? : Object[]
 }
 
+export interface DataTablePokemons {
+  pokemon: Array<Pokemons>
+}
+
 export interface DataPage {
   name: String
   url: String
