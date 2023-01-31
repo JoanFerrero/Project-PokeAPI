@@ -8,12 +8,12 @@ import {PokeContextType, DataPage} from '../types/pokemon';
 
 const PokePage = () => {
 
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(0)
   const [option, setOption] = useState('Grid') // List
   const { count, setOffset, pokemons } = useContext(PokemonContext) as PokeContextType;
 
   const onChangePage = (next: number) => {
-    if(page + next <= 0) return;
+    if(page + next <= -1) return;
     if(page + next >= (count / 9)) return
 
     setPage(page + next)
@@ -59,7 +59,7 @@ const PokePage = () => {
               </a>
             </li>
             <li>
-              <a className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{page}</a>
+              <a className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{page + 1}</a>
             </li>
             <li>
               <a onClick={() => onChangePage(+1)} className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
