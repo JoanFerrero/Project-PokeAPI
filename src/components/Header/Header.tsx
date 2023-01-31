@@ -1,12 +1,23 @@
 import { FaHeart } from 'react-icons/fa';
+import { BsFillMoonStarsFill } from 'react-icons/bs';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from './logo.png';
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
+import { setMode } from '../../redux/slice/poke';
 
 const Header = () => {
+  const dispatch = useCustomDispatch()
+  const { poke } = useCustomSelector((state) => state);
+  const mode = poke.mode
+
+  const changeColor = () => {
+    dispatch(setMode())
+  }
+
     return (
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar bg={mode} variant={mode} expand="lg">
         <Container>
           <Navbar.Brand href="/">
             <img 
@@ -22,6 +33,7 @@ const Header = () => {
               <Nav.Link href="/">Home</Nav.Link>
             </Nav>
             <Nav>
+            <Nav.Link onClick={() => changeColor() }><BsFillMoonStarsFill /></Nav.Link>
               <Nav.Link href="/likes"><FaHeart /></Nav.Link>
             </Nav>
           </Navbar.Collapse>

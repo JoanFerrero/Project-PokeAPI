@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { PokemonContext } from "../../Context/PokemonContext";
+import { useCustomSelector } from "../../hooks/redux";
 import { PokeContextType, PokeOne } from "../../types/pokemon";
 
 const Table = () => {
@@ -7,13 +8,16 @@ const Table = () => {
   const { ability } = useContext(PokemonContext) as PokeContextType;
   let num = 0
 
+  const { poke } = useCustomSelector((state) => state);
+  const mode = poke.mode
+
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto">
         <div className="p-1.5 w-full inline-block align-middle">
           <div className="overflow-hidden border rounded-lg">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className={`min-w-full divide-y divide-gray-200 bg-${mode}`}>
+              <thead className={`bg-gray-50 ml-6 ${mode === 'dark' ? 'text-white': 'text-gray-400'}`}>
                 <tr>
                   <th
                     scope="col"
@@ -49,16 +53,16 @@ const Table = () => {
                   slot
                 }: PokeOne) => (
                   <tr>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
+                  <td className={`px-6 py-4 text-sm font-medium whitespace-nowrap ${mode === 'dark' ? 'text-white': 'text-gray-800'}`}>
                     {num = num +1}
                   </td>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
+                  <td className={`px-6 py-4 text-sm font-medium whitespace-nowrap ${mode === 'dark' ? 'text-white': 'text-gray-800'}`}>
                   {ability.name}
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                  <td className={`px-6 py-4 text-sm font-medium whitespace-nowrap ${mode === 'dark' ? 'text-white': 'text-gray-800'}`}>
                     {is_hidden === true ? "Yes" : "No"}
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                  <td className={`px-6 py-4 text-sm font-medium whitespace-nowrap ${mode === 'dark' ? 'text-white': 'text-gray-800'}`}>
                     {slot}
                   </td>
                 </tr>
