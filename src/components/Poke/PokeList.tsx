@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { FcLike, FcLikePlaceholder } from 'react-icons/fc';
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
 import { setLike, setIdDetails } from "../../redux/slice/poke";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
 
 const PokeList = ({name, url, details, likes}: DataList) => {
 
@@ -20,18 +21,28 @@ const PokeList = ({name, url, details, likes}: DataList) => {
     navigate("/detail")
   }
 
-  const addRemovelike = (id: String) => {
-//    if(likes.includes({id})){
-//      console.log('remove')
-      // eslint-disable-next-line no-self-compare
-//      likes = likes.filter((id) => id !== id)
-//    } else {
-//      console.log('add')
-//      likes.push({id})
-//    }
-//    console.log(likes)
-//    dispatch(setLike({likesRedux: likes}))
+  const addLike = (id: string) => {
+    if(likes !== undefined) {
+      likes = [...likes, {id}]
+      dispatch(setLike({ likes }))
+    }
   }
+  const removeLike = (id: string) => {
+    if(likes !== undefined) {
+      likes = likes.filter(e => e.id !== id)
+      dispatch(setLike({ likes }))
+    }
+  }
+
+  useEffect(() => {
+    if(likes !== undefined) {
+      if(likes.find(e => e.id === id)) {
+        setHeart('a')
+      } else {
+        setHeart("FcLikePlaceholder")
+      }
+    }
+  }, [id])
 
   const { poke } = useCustomSelector((state) => state);
   const mode = poke.mode
@@ -41,13 +52,13 @@ const PokeList = ({name, url, details, likes}: DataList) => {
       {details === false ? (
         <div className={`w-full max-w-sm bg-${mode} border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700`}>
           <a onClick={() => detailsPoke(+url.split('/').slice(-2)[0])}>
-              <img className="p-8 rounded-t-lg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${url.split('/').slice(-2)[0]}.png`} />
+              <img className="p-8 rounded-t-lg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} />
           </a>
           <div className="px-5 pb-5">
             <h5 className={`text-xl font-semibold tracking-tight ${mode === 'dark' ? 'text-white': 'text-gray-900'}`}>{name.toUpperCase()}</h5>
             <div className="flex items-center mt-2.5 mb-5">
               <a onClick={() => setHeart(heart === "FcLikePlaceholder" ? "a" : "FcLikePlaceholder")}>
-                {heart === "FcLikePlaceholder" ? <FcLikePlaceholder onClick={() => addRemovelike(id)}/> : <FcLike onClick={() => addRemovelike(id)}/>}
+                {heart === "FcLikePlaceholder" ? <FcLikePlaceholder onClick={() => addLike(id)}/> : <FcLike onClick={() => removeLike(id)}/>}
               </a>
             </div>
           </div>

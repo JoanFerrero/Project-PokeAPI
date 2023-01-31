@@ -3,13 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface PokeState{
   mode: string,
   idDetail: String | null,
-  likes: Array<Object>
+  likes: Array<likes>
 }
 
 const initialState: PokeState = {
   mode: "white",
   idDetail: null,
   likes: [],
+}
+
+export interface likes {
+  id: String
 }
 
 const pokeSlice = createSlice({
@@ -23,7 +27,7 @@ const pokeSlice = createSlice({
       state.idDetail = action.payload.idDetail
     },
     setLike: (state, action) => {
-      state.likes = action.payload.likesRedux;
+      state.likes = action.payload.likes;
     }
   },
 })

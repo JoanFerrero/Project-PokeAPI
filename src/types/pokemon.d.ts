@@ -45,7 +45,10 @@ export interface DataList {
   name: String
   url: String
   details: Boolean
-  likes? : Object[]
+  likes? : Array<likes>
+}
+export interface likes {
+  id: String
 }
 
 export interface DataTablePokemons {
