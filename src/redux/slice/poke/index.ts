@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface AuthState{
+export interface PokeState{
   mode: string,
   idDetail: String | null,
   likes: Array<Object>
 }
 
-const initialState: AuthState = {
+const initialState: PokeState = {
   mode: "white",
   idDetail: null,
   likes: [],
 }
 
-const authSlice = createSlice({
+const pokeSlice = createSlice({
   name: 'poke',
   initialState,
   reducers: {
@@ -23,11 +23,11 @@ const authSlice = createSlice({
       state.idDetail = action.payload.idDetail
     },
     setLike: (state, action) => {
-      state.likes = action.payload.data;
+      state.likes = action.payload.likesRedux;
     }
   },
 })
 
-export const { setMode, setIdDetails, setLike} = authSlice.actions
+export const { setMode, setIdDetails, setLike} = pokeSlice.actions
 
-export default authSlice.reducer
+export default pokeSlice.reducer

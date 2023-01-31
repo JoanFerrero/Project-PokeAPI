@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer} from 'redux-persist'
 import storage from "redux-persist/lib/storage";
-import authReducer from './slice/poke'
+import pokeReducer from './slice/poke'
 
 const persistAuthConfig = {
   key: 'poke',
@@ -11,7 +11,7 @@ const persistAuthConfig = {
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer<ReturnType<typeof authReducer>>(persistAuthConfig, authReducer)
+    poke: persistReducer<ReturnType<typeof pokeReducer>>(persistAuthConfig, pokeReducer)
   },
   middleware: (defaultMiddleware) => defaultMiddleware({
     serializableCheck: false

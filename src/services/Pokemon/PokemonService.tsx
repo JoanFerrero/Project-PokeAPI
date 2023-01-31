@@ -5,7 +5,7 @@ const getAll = (limit: number, offset: number) => {
 }
 
 const getOne = (id: string) => {
-  return Api().get(`/pokemon/${id}`)
+  return Api().get(`/${id}`)
 }
 
 const PokemonService = {
