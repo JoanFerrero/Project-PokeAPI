@@ -2,7 +2,7 @@
 
 Por [`Joan Ferrero Montiel`](https://github.com/JoanFerrero)
 
-## Table of Contents
+## Tabla of Contents
 
 1. Instalación.
 2. Funciones.
